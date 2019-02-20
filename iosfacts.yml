@@ -1,0 +1,26 @@
+---
+- name: iosplay
+  hosts: Routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: configure login banner
+      ios_banner:
+        banner: login
+        text: "
+          bla bla
+          la bla
+              "
+        state: present
+#    - name: run multiple commands on remote nodes
+#      ios_command:
+#        commands:
+#         - copy run start 
+# Collect all facts from the device
+    - name: gatherfacts
+      ios_facts:
+       gather_subset: all
+      register: out
+    - debug: var=out
+

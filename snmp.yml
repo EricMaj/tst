@@ -1,0 +1,17 @@
+---
+- name: ios cmd example
+  hosts: R1
+  gather_facts: false
+  connection: local
+  vars:
+   ansible_network_os: ios 
+   ansible_user: eric
+   ansible_password: eric
+   ansible_become: yes
+   ansible_become_method: enable 
+  tasks:
+  - snmp_facts:
+      host: '{{ inventory_hostname }}' 
+      version: v2c
+      community: public
+      debug: ansible_sysdescr

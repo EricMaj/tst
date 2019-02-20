@@ -1,0 +1,10 @@
+---
+- name: MyYml
+  hosts: Routers
+  gather_facts: false
+
+  tasks:
+    - name: veryeasy
+      raw: "show run"
+      register: cmd_output 
+    - debug: var=cmd_output.stdout_lines

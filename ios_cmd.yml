@@ -1,0 +1,25 @@
+---
+- name: ios cmd example
+  hosts: Routers
+  gather_facts: false
+  connection: network_cli
+  vars:
+   ansible_network_os: ios 
+   ansible_user: eric
+   ansible_password: eric
+   ansible_become: yes
+   ansible_become_method: enable 
+  tasks:
+    - name: run multiple commands and evaluate the output
+      ios_command: 
+       commands:
+         - show version
+         - show interfaces
+#       waitfor:
+#         - result[0] contains 'tintin'
+    - name: run command with json formatted output
+      cli_command:
+       command: show version   
+      register: out
+    - debug: var=out
+
